@@ -6,114 +6,225 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>內湖國小 交通安全教育訪評 電子佐證</title>
 <style>
-:root{--navy:#123a6b;--navy2:#0b2748;--bg:#f4f6f9;--ink:#111;--line:#c9d2de;--accent:#ffd23f}
+:root{
+  --ink:#2E3A55; --ink2:#4a5672; --paper:#FBF8F4; --line:#d9d2c8;
+  --v1:#F4C2CC; --v1d:#d99aa8; --v2:#BFE3D0; --v2d:#8fc4a8; --v3:#BCD9F0; --v3d:#8db8db; --v4:#D5CCEE; --v4d:#ada0d6;
+  --apr:#F9D3B4; --aprd:#e5ac80;
+}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);
-  font-family:"Microsoft JhengHei","PingFang TC","Heiti TC","Noto Sans TC",sans-serif;font-size:22px;
-  -webkit-text-size-adjust:100%;overscroll-behavior:none}
-button{font:inherit;cursor:pointer;border:0}
-#top{position:fixed;left:0;right:0;top:0;height:84px;background:var(--navy);color:#fff;display:flex;align-items:center;gap:12px;padding:10px 14px;z-index:5}
-#top button{min-height:62px;min-width:120px;padding:0 18px;border-radius:12px;font-size:24px;font-weight:700;background:#fff;color:var(--navy)}
-#top button[disabled]{opacity:.35}
-#title{flex:1;font-size:24px;font-weight:700;line-height:1.25;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
-main{position:absolute;top:84px;left:0;right:0;bottom:0;overflow:auto;padding:18px}
-.home h1{font-size:30px;margin:6px 0 4px;text-align:center}
-.home p.sub{text-align:center;margin:0 0 18px;font-size:22px;color:#333}
-.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr))}
-.vol{min-height:170px;border-radius:18px;background:var(--navy);color:#fff;text-align:left;padding:20px 24px;display:flex;flex-direction:column;justify-content:center;gap:6px;box-shadow:0 3px 0 var(--navy2)}
-.vol .k{font-size:26px;color:var(--accent);font-weight:700}
-.vol .n{font-size:34px;font-weight:700}
-.vol .m{font-size:22px}
-.items{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr))}
-.it{min-height:110px;border-radius:14px;background:#fff;border:3px solid var(--navy);color:var(--ink);text-align:left;padding:12px 18px;display:flex;align-items:center;gap:16px}
-.it .c{font-size:32px;font-weight:800;color:var(--navy);min-width:110px}
-.it .t{font-size:24px;font-weight:700;line-height:1.3}
-.it .p{font-size:20px;color:#444;margin-top:4px}
-.voltitle{font-size:28px;font-weight:700;margin:0 0 8px}
-.desc{font-size:20px;line-height:1.5;color:#333;margin:0 0 14px;padding:10px 14px;background:#fff;border-left:6px solid var(--navy)}
-.ghead{font-size:24px;font-weight:800;color:#fff;background:var(--navy);padding:8px 14px;border-radius:10px;margin:18px 0 10px}
-/* 佐證頁 */
-.viewer{position:absolute;top:84px;bottom:96px;left:0;right:0;display:flex;flex-direction:column;padding:8px 10px 6px;overflow:hidden;touch-action:pinch-zoom}
-.cap{font-size:22px;font-weight:700;color:var(--navy);padding:2px 6px 6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.stage{flex:1;display:flex;align-items:center;justify-content:center;min-height:0}
-.stage img{max-width:100%;max-height:100%;object-fit:contain;background:#fff;box-shadow:0 0 0 1px var(--line),0 4px 14px rgba(0,0,0,.15);cursor:zoom-in}
-.hint{text-align:center;font-size:20px;color:#555;padding-top:4px}
-#bottom{position:fixed;left:0;right:0;bottom:0;height:96px;background:var(--navy);display:none;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;z-index:5}
-#bottom button{min-height:70px;min-width:190px;border-radius:14px;font-size:28px;font-weight:800;background:var(--accent);color:#111}
-#bottom button[disabled]{background:#7b8aa0;color:#d8dde5}
-#pageno{color:#fff;font-size:28px;font-weight:700;text-align:center;flex:1}
-#full{position:fixed;inset:0;background:#000;z-index:20;display:none;overflow:auto;touch-action:pinch-zoom}
-#full img{display:block;width:100%;height:auto;cursor:zoom-out}
-#full .close{position:fixed;top:12px;right:12px;min-height:62px;padding:0 22px;border-radius:12px;font-size:24px;font-weight:800;background:#fff;color:#111;z-index:21}
-@media (max-width:700px){#top button{min-width:96px;font-size:22px;padding:0 10px}#bottom button{min-width:130px;font-size:24px}#pageno{font-size:22px}#title{font-size:20px}}
+[hidden]{display:none!important}
+html,body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:"PingFang TC","Microsoft JhengHei","Noto Sans TC","Heiti TC",sans-serif;font-size:22px;line-height:1.5;
+  -webkit-text-size-adjust:100%}
+::selection{background:var(--apr);color:var(--ink)}
+html{scrollbar-color:var(--aprd) var(--paper)}
+button,a.btn{font:inherit;color:var(--ink);cursor:pointer;border:2px solid var(--aprd);background:var(--apr);
+  min-height:64px;padding:0 24px;border-radius:14px;font-size:24px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;gap:10px;text-decoration:none}
+button:focus-visible,a:focus-visible{outline:4px solid var(--ink);outline-offset:3px}
+button:active{transform:translateY(1px)}
+button[disabled]{opacity:.4;cursor:default}
+svg.ic{width:26px;height:26px;flex:none;stroke:currentColor;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+
+header.top{position:sticky;top:0;z-index:5;background:var(--paper);border-bottom:2px solid var(--line);
+  display:flex;align-items:center;gap:14px;padding:12px max(20px,env(safe-area-inset-right)) 12px max(20px,env(safe-area-inset-left))}
+header.top h1{margin:0;font-size:26px;font-weight:800;flex:1;min-width:0;line-height:1.3}
+header.top h1 small{display:block;font-size:22px;font-weight:600;color:var(--ink2)}
+main{padding:24px max(20px,env(safe-area-inset-right)) 48px max(20px,env(safe-area-inset-left));max-width:1280px;margin:0 auto}
+
+/* 首頁 */
+.intro{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;margin:0 0 28px}
+.intro p{margin:0;font-size:22px;color:var(--ink2);max-width:36em}
+section.vol{border-radius:16px;padding:20px 22px 24px;margin:0 0 26px}
+section.vol h2{margin:0 0 16px;font-size:28px;font-weight:800;line-height:1.3}
+section.vol h2 span{font-weight:600;font-size:24px;margin-left:10px}
+.vol1{background:var(--v1)} .vol2{background:var(--v2)} .vol3{background:var(--v3)} .vol4{background:var(--v4)}
+.items{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(min(100%,330px),1fr))}
+.it{justify-content:flex-start;text-align:left;min-height:92px;padding:12px 18px;background:var(--paper);border:2px solid transparent;border-radius:14px;gap:16px}
+.vol1 .it{border-color:var(--v1d)} .vol2 .it{border-color:var(--v2d)} .vol3 .it{border-color:var(--v3d)} .vol4 .it{border-color:var(--v4d)}
+.it .c{font-size:28px;font-weight:800;min-width:96px;font-variant-numeric:tabular-nums}
+.it .t{font-size:24px;font-weight:700;line-height:1.35}
+.it .n{display:block;font-size:22px;font-weight:500;color:var(--ink2)}
+
+/* 細項：縮圖格 */
+.ihead{border-radius:16px;padding:18px 22px;margin:0 0 22px}
+.ihead h2{margin:0;font-size:30px;font-weight:800;line-height:1.3}
+.ihead p{margin:6px 0 0;font-size:22px}
+.grid{display:grid;gap:22px;grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
+.th{all:unset;cursor:pointer;display:flex;flex-direction:column;gap:8px;position:relative}
+.th:focus-visible{outline:4px solid var(--ink);outline-offset:4px;border-radius:6px}
+.th img{width:100%;aspect-ratio:1400/1982;object-fit:cover;object-position:top;background:#fff;border:2px solid var(--line);border-radius:6px;display:block}
+.th .pg{font-size:22px;font-weight:700;font-variant-numeric:tabular-nums}
+.th .lb{font-size:22px;color:var(--ink2);line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.th .eo{position:absolute;top:8px;right:8px;background:var(--apr);border:2px solid var(--aprd);color:var(--ink);font-size:22px;font-weight:800;padding:2px 10px;border-radius:8px}
+
+/* 放大檢視 */
+#viewer{position:fixed;inset:0;z-index:20;background:#e9e4dc;display:none;flex-direction:column}
+#viewer.on{display:flex}
+#vbar,#vfoot{display:flex;align-items:center;gap:12px;padding:10px max(14px,env(safe-area-inset-right)) 10px max(14px,env(safe-area-inset-left));background:var(--paper);flex-wrap:wrap}
+#vbar{border-bottom:2px solid var(--line)}
+#vfoot{border-top:2px solid var(--line);justify-content:space-between;padding-bottom:max(10px,env(safe-area-inset-bottom))}
+#vcap{flex:1;min-width:240px;font-size:22px;line-height:1.35}
+#vcap b{font-size:24px;display:block}
+#vstage{flex:1;overflow:auto;touch-action:pan-x pan-y;-webkit-overflow-scrolling:touch;position:relative}
+#vimg{display:block;margin:0 auto;background:#fff;box-shadow:0 2px 12px rgba(46,58,85,.18);user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+#vpos{white-space:nowrap;font-size:24px;font-weight:700;font-variant-numeric:tabular-nums;min-width:150px;text-align:center}
+.zgrp{display:flex;gap:10px}
+@media (max-width:820px){
+  header.top h1{font-size:22px} header.top h1 small{font-size:20px}
+  #vfoot button,#vbar button{padding:0 14px}
+  .grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+}
+@media (max-width:640px){
+  #vfoot{flex-wrap:nowrap;gap:8px} #vfoot .tx{display:none} #vfoot button{padding:0 16px;min-width:64px}
+  #vpos{min-width:0;font-size:22px} #vcap{flex-basis:100%}
+}
 </style>
 </head>
 <body>
-<div id="top"><button id="bHome">回首頁</button><button id="bUp">上一層</button><div id="title"></div></div>
+<header class="top">
+  <h1>新竹市香山區內湖國民小學<small>115年度交通安全教育訪評　電子佐證</small></h1>
+  <button id="bHomeTop" hidden><svg class="ic" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>回首頁</button>
+</header>
 <main id="main"></main>
-<div id="bottom"><button id="bPrev">上一頁</button><div id="pageno"></div><button id="bNext">下一頁</button></div>
-<div id="full"><button class="close" id="bClose">縮回</button><img id="fimg" alt=""></div>
+
+<div id="viewer" role="dialog" aria-modal="true" aria-labelledby="vcap">
+  <div id="vbar">
+    <div id="vcap"></div>
+    <button id="vItem"><svg class="ic" viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7"/><rect x="13" y="4" width="7" height="7"/><rect x="4" y="13" width="7" height="7"/><rect x="13" y="13" width="7" height="7"/></svg>回細項</button>
+    <button id="vHome"><svg class="ic" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>回首頁</button>
+  </div>
+  <div id="vstage"><img id="vimg" alt=""></div>
+  <div id="vfoot">
+    <button id="vPrev"><svg class="ic" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg><span class="tx">上一頁</span></button>
+    <div class="zgrp">
+      <button id="vOut" aria-label="縮小"><svg class="ic" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M8 11h6M16.5 16.5L21 21"/></svg><span class="tx">縮小</span></button>
+      <div id="vpos"></div>
+      <button id="vIn" aria-label="放大"><svg class="ic" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M8 11h6M11 8v6M16.5 16.5L21 21"/></svg><span class="tx">放大</span></button>
+    </div>
+    <button id="vNext"><span class="tx">下一頁</span><svg class="ic" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+  </div>
+</div>
+
 <script src="data.js"></script>
 <script>
 const D = window.DATA || [];
+const TRAFFIC = 'https://nhps-traffic.nhps.workers.dev/';
 const $ = id => document.getElementById(id);
-let st = {view:'home', v:0, i:0, p:0};
-function go(s){ st = Object.assign({}, st, s); render(); }
-function findItem(code){ for(let v=0; v<D.length; v++) for(let i=0;i<D[v].items.length;i++) if(D[v].items[i].code===code) return [v,i]; return [0,0]; }
-function render(){
-  const m = $('main'); $('bottom').style.display='none'; m.className=''; m.style.display='block';
-  const old = document.querySelector('.viewer'); if(old) old.remove();
-  $('bHome').disabled = st.view==='home'; $('bUp').disabled = st.view==='home';
-  if(st.view==='home'){
-    $('title').textContent = '新竹市香山區內湖國民小學　115年度交通安全教育訪評　電子佐證';
-    let h = '<div class="home"><h1>請選擇冊別</h1><p class="sub">紙本四冊為正式書面資料，本頁為輔助檢視</p><div class="grid">';
-    D.forEach((v,k)=>{ const n=v.items.reduce((a,b)=>a+b.pages.length,0);
-      h += `<button class="vol" data-v="${k}"><span class="k">${v.key}</span><span class="n">${v.name}（${v.pct}）</span><span class="m">${v.pct}　細項 ${v.items[0].code}～${v.items[v.items.length-1].code}（${v.items.length} 項）</span></button>`; });
-    m.innerHTML = h + '</div></div>';
-    m.querySelectorAll('.vol').forEach(b=>b.onclick=()=>go({view:'vol', v:+b.dataset.v}));
-  } else if(st.view==='vol'){
-    const v = D[st.v];
-    $('title').textContent = `${v.key}　${v.name}（${v.pct}）`;
-    let h = `<div class="voltitle">${v.key}　${v.name}（${v.pct}）：請選擇細項</div><div class="desc">${v.desc||''}</div>`;
-    let g = null;
-    v.items.forEach((it,k)=>{
-      if(it.group!==g){ if(g!==null) h += '</div>'; g = it.group; h += `<div class="ghead">指標：${g}</div><div class="items">`; }
-      h += `<button class="it" data-i="${k}"><span class="c">${it.code}</span><span><div class="t">${it.title}</div><div class="p">共 ${it.pages.length} 頁</div></span></button>`; });
-    m.innerHTML = h + '</div>';
-    m.querySelectorAll('.it').forEach(b=>b.onclick=()=>go({view:'item', i:+b.dataset.i, p:0}));
-  } else {
-    const v = D[st.v], it = v.items[st.i], pg = it.pages[st.p];
-    m.style.display='none';
-    $('title').textContent = `${it.code}　${it.group}｜${it.title}`;
-    const vw = document.createElement('div'); vw.className='viewer';
-    vw.innerHTML = `<div class="cap"></div><div class="stage"><img alt=""></div><div class="hint">點圖片可放大，再點一次縮回</div>`;
-    document.body.appendChild(vw);
-    vw.querySelector('.cap').textContent = pg.label;
-    const img = vw.querySelector('img'); img.src = pg.src; img.onclick = openFull;
-    $('bottom').style.display='flex';
-    $('pageno').textContent = `第 ${st.p+1}／${it.pages.length} 頁`;
-    $('bPrev').disabled = st.p===0; $('bNext').disabled = st.p===it.pages.length-1;
-    if(st.p+1<it.pages.length){ const n=new Image(); n.src=it.pages[st.p+1].src; }
-  }
-  try{ history.replaceState(null,'', st.view==='home'?'#':(st.view==='vol'?'#v'+st.v:'#'+D[st.v].items[st.i].code+'/'+(st.p+1))); }catch(e){}
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const ITEMS = {};
+D.forEach((v, vi) => v.items.forEach(it => { ITEMS[it.code] = {v, vi, it}; }));
+const pageNo = p => p.paper || '紙本未收錄';
+
+function home(){
+  $('bHomeTop').hidden = true;
+  let h = `<div class="intro"><p>紙本四冊為正式書面資料，本頁供委員檢視；請點選細項。</p>
+    <a class="btn" href="${TRAFFIC}" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24"><path d="M5 19c3-1 3-6 7-7s4-6 7-7"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="5" r="2"/></svg>通學動線動態圖</a></div>`;
+  D.forEach((v, vi) => {
+    h += `<section class="vol vol${vi+1}"><h2>${esc(v.key)}　${esc(v.name)}<span>${esc(v.pct)}</span></h2><div class="items">`;
+    v.items.forEach(it => {
+      h += `<button class="it" data-code="${esc(it.code)}"><span class="c">${esc(it.code)}</span><span class="t">${esc(it.title)}<span class="n">${it.pages.length} 頁</span></span></button>`;
+    });
+    h += '</div></section>';
+  });
+  $('main').innerHTML = h;
+  document.querySelectorAll('.it').forEach(b => b.onclick = () => go('#/' + b.dataset.code));
+  document.title = '內湖國小 交通安全教育訪評 電子佐證';
 }
-function openFull(){ const it=D[st.v].items[st.i]; $('fimg').src=it.pages[st.p].src; $('full').style.display='block'; $('full').scrollTop=0; }
-function closeFull(){ $('full').style.display='none'; }
-$('fimg').onclick = closeFull; $('bClose').onclick = closeFull;
-$('bHome').onclick = ()=>{ closeFull(); go({view:'home'}); };
-$('bUp').onclick = ()=>{ closeFull(); if(st.view==='item') go({view:'vol'}); else go({view:'home'}); };
-$('bPrev').onclick = ()=>{ if(st.p>0) go({p:st.p-1}); };
-$('bNext').onclick = ()=>{ const n=D[st.v].items[st.i].pages.length; if(st.p<n-1) go({p:st.p+1}); };
-document.addEventListener('keydown', e=>{ if(st.view!=='item') return;
-  if(e.key==='ArrowRight'||e.key==='PageDown') $('bNext').click();
-  if(e.key==='ArrowLeft'||e.key==='PageUp') $('bPrev').click();
-  if(e.key==='Escape') closeFull(); });
-(function init(){
-  const h = decodeURIComponent(location.hash.slice(1));
-  if(/^v\d$/.test(h)) st={view:'vol', v:+h[1], i:0, p:0};
-  else if(h){ const [code,p] = h.split('/'); const [v,i] = findItem(code); st={view:'item', v, i, p:Math.max(0,(+p||1)-1)}; }
-  render();
+
+function item(code){
+  const x = ITEMS[code]; if(!x) return home();
+  $('bHomeTop').hidden = false;
+  const {v, vi, it} = x;
+  let h = `<div class="ihead vol${vi+1}"><h2>${esc(it.code)}　${esc(it.title)}</h2><p>${esc(v.key)}　${esc(v.name)}　｜　指標：${esc(it.group)}　｜　共 ${it.pages.length} 頁</p></div><div class="grid">`;
+  it.pages.forEach((p, i) => {
+    h += `<button class="th" data-i="${i}" aria-label="${esc(pageNo(p))} ${esc(p.label)}"><img loading="lazy" src="${esc(p.thumb)}" alt="">${p.paper ? '' : '<span class="eo">僅電子</span>'}<span class="pg">${esc(pageNo(p))}</span><span class="lb">${esc(p.label)}</span></button>`;
+  });
+  $('main').innerHTML = h + '</div>';
+  document.querySelectorAll('.th').forEach(b => b.onclick = () => go(`#/${code}/${+b.dataset.i + 1}`));
+  document.title = `${it.code} ${it.title}｜電子佐證`;
+}
+
+/* 放大檢視 */
+let cur = null, scale = 1;
+function fitWidth(){
+  const st = $('vstage'), img = $('vimg');
+  const nw = img.naturalWidth || 1400, nh = img.naturalHeight || 1982;
+  const fit = Math.min((st.clientWidth - 16) / nw, (st.clientHeight - 16) / nh);
+  return nw * fit;
+}
+function applyScale(keepX, keepY){
+  const st = $('vstage'), img = $('vimg');
+  const oldW = img.offsetWidth || 1;
+  const w = fitWidth() * scale;
+  const rx = keepX == null ? 0.5 : keepX, ry = keepY == null ? 0.5 : keepY;
+  const cx = st.scrollLeft + st.clientWidth * rx, cy = st.scrollTop + st.clientHeight * ry;
+  img.style.width = w + 'px';
+  img.style.marginTop = scale === 1 ? Math.max(8, (st.clientHeight - img.offsetHeight) / 2) + 'px' : '8px';
+  const k = w / oldW;
+  st.scrollLeft = cx * k - st.clientWidth * rx;
+  st.scrollTop = cy * k - st.clientHeight * ry;
+  $('vOut').disabled = scale <= 1; $('vIn').disabled = scale >= 4;
+}
+function zoom(f, rx, ry){ scale = Math.min(4, Math.max(1, scale * f)); applyScale(rx, ry); }
+function view(code, n){
+  const x = ITEMS[code]; if(!x) return home();
+  if(!$('main').querySelector('.grid') || $('main').dataset.code !== code){ item(code); $('main').dataset.code = code; }
+  const it = x.it, i = Math.min(Math.max(n - 1, 0), it.pages.length - 1), p = it.pages[i];
+  cur = {code, i, it};
+  $('vcap').innerHTML = `<b>${esc(it.code)}　${esc(it.title)}</b>${esc(pageNo(p))}　${esc(p.label)}`;
+  $('vpos').textContent = `${i + 1}／${it.pages.length}`;
+  $('vPrev').disabled = i === 0; $('vNext').disabled = i === it.pages.length - 1;
+  const img = $('vimg'); scale = 1;
+  img.onload = () => { applyScale(); $('vstage').scrollTop = 0; };
+  img.src = p.src; img.alt = p.label;
+  if(img.complete && img.naturalWidth) img.onload();
+  $('viewer').classList.add('on'); document.body.style.overflow = 'hidden';
+  if(i + 1 < it.pages.length){ new Image().src = it.pages[i + 1].src; }
+}
+function closeViewer(){ $('viewer').classList.remove('on'); document.body.style.overflow = ''; cur = null; }
+
+function go(h){ if(location.hash === h) route(); else location.hash = h; }
+function route(){
+  const m = decodeURIComponent(location.hash).match(/^#\/([\d-]+)(?:\/(\d+))?$/);
+  if(!m){ closeViewer(); $('main').dataset.code = ''; home(); window.scrollTo(0, 0); return; }
+  if(m[2]) view(m[1], +m[2]);
+  else { const back = $('main').dataset.code === m[1]; closeViewer(); if(!back){ item(m[1]); $('main').dataset.code = m[1]; window.scrollTo(0, 0); } }
+}
+window.addEventListener('hashchange', route);
+window.addEventListener('resize', () => { if(cur) applyScale(); });
+$('bHomeTop').onclick = () => go('#/');
+$('vHome').onclick = () => go('#/');
+$('vItem').onclick = () => go('#/' + cur.code);
+$('vPrev').onclick = () => cur && cur.i > 0 && go(`#/${cur.code}/${cur.i}`);
+$('vNext').onclick = () => cur && cur.i < cur.it.pages.length - 1 && go(`#/${cur.code}/${cur.i + 2}`);
+$('vIn').onclick = () => zoom(1.5);
+$('vOut').onclick = () => zoom(1 / 1.5);
+$('vimg').ondblclick = e => { const st = $('vstage'), r = st.getBoundingClientRect(); scale > 1 ? zoom(1 / scale) : zoom(2, (e.clientX - r.left) / st.clientWidth, (e.clientY - r.top) / st.clientHeight); };
+document.addEventListener('keydown', e => {
+  if(!cur) return;
+  if(e.key === 'ArrowRight' || e.key === 'PageDown') $('vNext').click();
+  else if(e.key === 'ArrowLeft' || e.key === 'PageUp') $('vPrev').click();
+  else if(e.key === '+' || e.key === '=') zoom(1.5);
+  else if(e.key === '-') zoom(1 / 1.5);
+  else if(e.key === 'Escape') $('vItem').click();
+});
+/* 雙指縮放（iPad / 手機） */
+(function(){
+  const st = $('vstage'); let d0 = 0, s0 = 1;
+  const dist = t => Math.hypot(t[0].clientX - t[1].clientX, t[0].clientY - t[1].clientY);
+  st.addEventListener('touchstart', e => { if(e.touches.length === 2){ d0 = dist(e.touches); s0 = scale; } }, {passive: true});
+  st.addEventListener('touchmove', e => {
+    if(e.touches.length !== 2 || !d0) return;
+    e.preventDefault();
+    const r = st.getBoundingClientRect();
+    const mx = ((e.touches[0].clientX + e.touches[1].clientX) / 2 - r.left) / st.clientWidth;
+    const my = ((e.touches[0].clientY + e.touches[1].clientY) / 2 - r.top) / st.clientHeight;
+    scale = Math.min(4, Math.max(1, s0 * dist(e.touches) / d0)); applyScale(mx, my);
+  }, {passive: false});
+  st.addEventListener('touchend', e => { if(e.touches.length < 2) d0 = 0; });
+  ['gesturestart', 'gesturechange'].forEach(t => document.addEventListener(t, e => e.preventDefault()));
 })();
+route();
 </script>
 </body>
 </html>
